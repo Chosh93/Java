@@ -7,6 +7,10 @@ public class EmpVO {
     private String name;
     private String job;
     private int mgr;
+    private Date date;
+    private double sal;
+    private double comm;
+    private int deptNo;
 
     public EmpVO(int empNo, String name, String job, int mgr, Date date, double sal, double comm, int deptNo) {
         this.empNo = empNo;
@@ -18,11 +22,6 @@ public class EmpVO {
         this.comm = comm;
         this.deptNo = deptNo;
     }
-
-    private Date date;
-    private double sal;
-    private double comm;
-    private int deptNo;
 
     public int getEmpNo() {
         return empNo;
