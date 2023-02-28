@@ -1,24 +1,14 @@
 package cafeDB.vo;
 
 public class CafeMenuVO {
-    private int cafeMenuNo;
     private String cafeMenuName;
     private int cafeMenuPrice;
     private String cafeMenuCategory;
 
-    public CafeMenuVO(int cafeMenuNo, String cafeMenuName, int cafeMenuPrice, String cafeMenuCategory) {
-        this.cafeMenuNo = cafeMenuNo;
+    public CafeMenuVO(String cafeMenuName, int cafeMenuPrice, String cafeMenuCategory) {
         this.cafeMenuName = cafeMenuName;
         this.cafeMenuPrice = cafeMenuPrice;
         this.cafeMenuCategory = cafeMenuCategory;
-    }
-
-    public int getCafeMenuNo() {
-        return cafeMenuNo;
-    }
-
-    public void setCafeMenuNo(int cafeMenuNo) {
-        this.cafeMenuNo = cafeMenuNo;
     }
 
     public String getCafeMenuName() {
