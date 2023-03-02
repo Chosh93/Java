@@ -2,7 +2,6 @@ package cafeDB.dao;
 
 import cafeDB.util.CafeCommon;
 import cafeDB.vo.CafeCategoryVO;
-import cafeDB.vo.CafeMenuVO;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -22,8 +21,8 @@ public class CafeCategoryDAO {
         try{
             conn = CafeCommon.getConnection();
             stmt = conn.createStatement();
-            int categoryNum = sc.nextInt();
-            String query = "SELECT DISTINCT CAFE_MENU_CATEGORY FROM CAFE_MENU";
+            String query = "SELECT * FROM CATEGORY";
+            rset = stmt.executeQuery(query);
             while(rset.next()){
                 int sequenceNum = rset.getInt("CATEGORY_ID");
                 String cafeMenuCategory = rset.getString("CATEGORY_NAME");
@@ -40,9 +39,8 @@ public class CafeCategoryDAO {
     }
     public void cafeCategorySelectPrint(List<CafeCategoryVO> list){
         for(CafeCategoryVO e : list){
-            System.out.println("////////////////////////");
-            System.out.println("///////// " + e.getCategoryName() + " /////////");
-            System.out.println("////////////////////////");
+            System.out.println(e.getCategoryNo() + ". " + e.getCategoryName());
         }
     }
+
 }
