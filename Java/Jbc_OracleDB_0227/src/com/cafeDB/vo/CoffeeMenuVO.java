@@ -1,4 +1,4 @@
-package cafeDB.vo;
+package com.cafeDB.vo;
 
 public class CoffeeMenuVO {
     private int coffeeMenuId;
@@ -12,6 +12,7 @@ public class CoffeeMenuVO {
         this.coffeeMenuPrice = coffeeMenuPrice;
         this.coffeeMenuCategory = coffeeMenuCategory;
     }
+
 
     public int getCoffeeMenuId() {
         return coffeeMenuId;

@@ -1,9 +1,7 @@
-package cafeDB.dao;
+package com.cafeDB.dao;
 
-import cafeDB.util.CafeCommon;
-import cafeDB.vo.AdeMenuVO;
-import cafeDB.vo.CoffeeMenuVO;
-import cafeDB.vo.DessertMenuVO;
+import com.cafeDB.util.CafeCommon;
+import com.cafeDB.vo.AdeMenuVO;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -12,26 +10,26 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class DessertMenuDAO {
+public class AdeMenuDAO {
     Connection conn = null;
     Statement stmt = null;
     ResultSet rset = null;
     Scanner sc = new Scanner(System.in);
 
-    public List<DessertMenuVO> dessertMenuSelect(){
-        List<DessertMenuVO> list = new ArrayList<>();
+    public List<AdeMenuVO> adeMenuSelect(){
+        List<AdeMenuVO> list = new ArrayList<>();
         try{
             conn = CafeCommon.getConnection();
             stmt = conn.createStatement();
-            String query = "SELECT * FROM DESSERT_MENU";
+            String query = "SELECT * FROM ADE_MENU";
             rset = stmt.executeQuery(query);
             while(rset.next()){
-                int dessertMenuId = rset.getInt("MENU_ID");
-                String dessertMenuName = rset.getString("MENU_NAME");
-                int dessertMenuPrice = rset.getInt("MENU_PRICE");
-                String dessertMenuCategory = rset.getString("MENU_CATEGORY");
-                DessertMenuVO dessertvo = new DessertMenuVO(dessertMenuId, dessertMenuName, dessertMenuPrice, dessertMenuCategory);
-                list.add(dessertvo);
+                int adeMenuId = rset.getInt("MENU_ID");
+                String adeMenuName = rset.getString("MENU_NAME");
+                int adeMenuPrice = rset.getInt("MENU_PRICE");
+                String adeMenuCategory = rset.getString("MENU_CATEGORY");
+                AdeMenuVO adevo = new AdeMenuVO(adeMenuId, adeMenuName, adeMenuPrice, adeMenuCategory);
+                list.add(adevo);
             }
             CafeCommon.close(rset);
             CafeCommon.close(stmt);
@@ -41,25 +39,25 @@ public class DessertMenuDAO {
         }
         return list;
     }
-    public void dessertMenuSelectPrint(List<DessertMenuVO> list){
-        for(DessertMenuVO e : list){
-            System.out.println("번호 : " + e.getDessertMenuID());
-            System.out.println("이름 : " + e.getDessertMenuName());
-            System.out.println("가격 : " + e.getDessertMenuPrice());
-            System.out.println("카테고리 : " + e.getDessertMenuCategory());
+    public void adeMenuSelectPrint(List<AdeMenuVO> list){
+        for(AdeMenuVO e : list){
+            System.out.println("번호 : " + e.getAdeMenuId());
+            System.out.println("이름 : " + e.getAdeMenuName());
+            System.out.println("가격 : " + e.getAdeMenuPrice());
+            System.out.println("카테고리 : " + e.getAdeMenuCategory());
             System.out.println("--------------------------------------------");
         }
     }
-    public void dessertMenuInsert() {
-        System.out.println("추가할 디저트 메뉴를 입력 하세요.");
+    public void adeMenuInsert() {
+        System.out.println("추가할 에이드 메뉴를 입력 하세요.");
         System.out.print("메뉴 이름 : ");
-        String dessertMenuName = sc.next();
+        String adeMenuName = sc.next();
         System.out.print("메뉴 가격 : ");
-        int dessertMenuPrice = sc.nextInt();
+        int adeMenuPrice = sc.nextInt();
         try {
             conn = CafeCommon.getConnection();
             stmt = conn.createStatement();
-            String query = "INSERT INTO DESSERT_MENU(MENU_ID, MENU_NAME, MENU_PRICE, MENU_CATEGORY) VALUES((SELECT NVL(MAX(MENU_ID),0)+1 FROM DESSERT_MENU), '" + dessertMenuName + "', " + dessertMenuPrice + ", " + "'DESSERT')";
+            String query = "INSERT INTO ADE_MENU(MENU_ID, MENU_NAME, MENU_PRICE, MENU_CATEGORY) VALUES((SELECT NVL(MAX(MENU_ID),0)+1 FROM ADE_MENU), '" + adeMenuName + "', " + adeMenuPrice + ", " + "'ADE')";
             rset = stmt.executeQuery(query);
             CafeCommon.close(rset);
             CafeCommon.close(stmt);
@@ -68,14 +66,14 @@ public class DessertMenuDAO {
             e.printStackTrace();
         }
     }
-    public void dessertMenuDelete() {
-        System.out.println("삭제할 디저트 메뉴를 입력 하세요.");
+    public void adeMenuDelete() {
+        System.out.println("삭제할 에이드 메뉴를 입력 하세요.");
         System.out.print("메뉴 이름 : ");
-        String dessertMenuName = sc.next();
+        String adeMenuName = sc.next();
         try {
             conn = CafeCommon.getConnection();
             stmt = conn.createStatement();
-            String query = "DELETE FROM DESSERT_MENU WHERE MENU_NAME = " + "'" + dessertMenuName + "'";
+            String query = "DELETE FROM ADE_MENU WHERE MENU_NAME = " + "'" + adeMenuName + "'";
             rset = stmt.executeQuery(query);
             CafeCommon.close(rset);
             CafeCommon.close(stmt);
@@ -84,19 +82,19 @@ public class DessertMenuDAO {
             e.printStackTrace();
         }
     }
-    public void dessertMenuUpdate() {
+    public void adeMenuUpdate() {
         System.out.println("변경할 내용 : [1]메뉴이름변경, [2]메뉴가격변경");
         int updatesel = sc.nextInt();
         switch(updatesel){
             case 1:
                 System.out.print("변경 전 메뉴 이름 : ");
-                String dessertMenuBeforeName = sc.next();
+                String adeMenuBeforeName = sc.next();
                 System.out.print("변경 후 메뉴 이름 : ");
-                String dessertMenuAfterName = sc.next();
+                String adeMenuAfterName = sc.next();
                 try {
                     conn = CafeCommon.getConnection();
                     stmt = conn.createStatement();
-                    String query = "UPDATE DESSERT_MENU SET MENU_NAME = '" + dessertMenuAfterName + "'" + " WHERE MENU_NAME = " + "'" + dessertMenuBeforeName + "'";
+                    String query = "UPDATE ADE_MENU SET MENU_NAME = '" + adeMenuAfterName + "'" + " WHERE MENU_NAME = " + "'" + adeMenuBeforeName + "'";
                     rset = stmt.executeQuery(query);
                     CafeCommon.close(rset);
                     CafeCommon.close(stmt);
@@ -106,13 +104,13 @@ public class DessertMenuDAO {
                 } break;
             case 2:
                 System.out.print("변경할 메뉴 이름 : ");
-                String dessertMenuName_Price = sc.next();
+                String adeMenuName_Price = sc.next();
                 System.out.print("변경 후 메뉴 가격 : ");
-                int dessertMenuAfterPrice = sc.nextInt();
+                int adeMenuAfterPrice = sc.nextInt();
                 try {
                     conn = CafeCommon.getConnection();
                     stmt = conn.createStatement();
-                    String query = "UPDATE DESSERT_MENU SET MENU_PRICE = " + "'" + dessertMenuAfterPrice + "'" + " WHERE MENU_NAME = " + "'" + dessertMenuName_Price + "'";
+                    String query = "UPDATE ADE_MENU SET MENU_PRICE = " + "'" + adeMenuAfterPrice + "'" + " WHERE MENU_NAME = " + "'" + adeMenuName_Price + "'";
                     rset = stmt.executeQuery(query);
                     CafeCommon.close(rset);
                     CafeCommon.close(stmt);

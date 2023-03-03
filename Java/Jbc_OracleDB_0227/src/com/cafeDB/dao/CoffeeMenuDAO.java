@@ -7,20 +7,24 @@
                                     '마일리지 적립할 전화 번호 입력'
                                     '결제 후 적립 마일리지 확인하기'
  */
-package cafeDB.dao;
-import cafeDB.util.CafeCommon;
-import cafeDB.vo.CoffeeMenuVO;
+package com.cafeDB.dao;
+
+import com.cafeDB.util.CafeCommon;
+import com.cafeDB.vo.CoffeeMenuVO;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
 public class CoffeeMenuDAO {
     Connection conn = null;
     Statement stmt = null;
     ResultSet rset = null;
     Scanner sc = new Scanner(System.in);
+
     public List<CoffeeMenuVO> coffeeMenuSelect() {
         List<CoffeeMenuVO> list = new ArrayList<>();
         try {
@@ -28,7 +32,7 @@ public class CoffeeMenuDAO {
             stmt = conn.createStatement();
             String query = "SELECT * FROM COFFEE_MENU";
             rset = stmt.executeQuery(query);
-            while(rset.next()){
+            while (rset.next()) {
                 int coffeeMenuId = rset.getInt("MENU_ID");
                 String coffeeMenuName = rset.getString("MENU_NAME");
                 int coffeeMenuPrice = rset.getInt("MENU_PRICE");
@@ -39,14 +43,14 @@ public class CoffeeMenuDAO {
             CafeCommon.close(rset);
             CafeCommon.close(stmt);
             CafeCommon.close(conn);
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return list;
     }
 
-    public void coffeeMenuSelectPrint(List<CoffeeMenuVO> list){
-        for(CoffeeMenuVO e : list){
+    public void coffeeMenuSelectPrint(List<CoffeeMenuVO> list) {
+        for (CoffeeMenuVO e : list) {
             System.out.println("번호 : " + e.getCoffeeMenuId());
             System.out.println("이름 : " + e.getCoffeeMenuName());
             System.out.println("가격 : " + e.getCoffeeMenuPrice());
@@ -54,6 +58,7 @@ public class CoffeeMenuDAO {
             System.out.println("--------------------------------------------");
         }
     }
+
     public void coffeeMenuInsert() {
         System.out.println("추가할 카페 메뉴를 입력 하세요.");
         System.out.print("메뉴 이름 : ");
@@ -63,7 +68,7 @@ public class CoffeeMenuDAO {
         try {
             conn = CafeCommon.getConnection();
             stmt = conn.createStatement();
-            String query = "INSERT INTO COFFEE_MENU(MENU_ID, MENU_NAME, MENU_PRICE, MENU_CATEGORY) VALUES((SELECT NVL(MAX(MENU_ID),0)+1 FROM COFFEE_MENU), '" +coffeeMenuName + "', " + coffeeMenuPrice + ", " + "'COFFEE')";
+            String query = "INSERT INTO COFFEE_MENU(MENU_ID, MENU_NAME, MENU_PRICE, MENU_CATEGORY) VALUES((SELECT NVL(MAX(MENU_ID),0)+1 FROM COFFEE_MENU), '" + coffeeMenuName + "', " + coffeeMenuPrice + ", " + "'COFFEE')";
             rset = stmt.executeQuery(query);
             CafeCommon.close(rset);
             CafeCommon.close(stmt);
@@ -72,6 +77,7 @@ public class CoffeeMenuDAO {
             e.printStackTrace();
         }
     }
+
     public void coffeMenuDelete() {
         System.out.println("삭제할 카페 메뉴를 입력 하세요.");
         System.out.print("메뉴 이름 : ");
@@ -88,10 +94,11 @@ public class CoffeeMenuDAO {
             e.printStackTrace();
         }
     }
+
     public void coffeeMenuUpdate() {
         System.out.println("변경할 내용 : [1]메뉴이름변경, [2]메뉴가격변경");
         int updatesel = sc.nextInt();
-        switch(updatesel){
+        switch (updatesel) {
             case 1:
                 System.out.print("변경 전 메뉴 이름 : ");
                 String coffeeMenuBeforeName = sc.next();
@@ -107,7 +114,8 @@ public class CoffeeMenuDAO {
                     CafeCommon.close(conn);
                 } catch (Exception e) {
                     e.printStackTrace();
-                } break;
+                }
+                break;
             case 2:
                 System.out.print("변경할 메뉴 이름 : ");
                 String coffeeMenuName_Price = sc.next();
@@ -123,8 +131,8 @@ public class CoffeeMenuDAO {
                     CafeCommon.close(conn);
                 } catch (Exception e) {
                     e.printStackTrace();
-                } break;
-
+                }
+                break;
         }
     }
 }

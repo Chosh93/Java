@@ -1,7 +1,7 @@
-package cafeDB.dao;
+package com.cafeDB.dao;
 
-import cafeDB.util.CafeCommon;
-import cafeDB.vo.CafeCategoryVO;
+import com.cafeDB.util.CafeCommon;
+import com.cafeDB.vo.CafeCategoryVO;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

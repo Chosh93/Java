@@ -1,4 +1,4 @@
-package cafeDB.util;
+package com.cafeDB.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

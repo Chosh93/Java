@@ -1,4 +1,4 @@
-package cafeDB.vo;
+package com.cafeDB.vo;
 
 public class DessertMenuVO {
     private int dessertMenuID;
