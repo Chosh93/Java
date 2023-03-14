@@ -1,24 +1,24 @@
-package com.cafeDB.vo;
+package lastCafeDB.vo;
 
-public class MenuVO {
-    private int menuId;
+public class CafeMenuVO {
+    private int menuID;
     private String menuName;
     private int menuPrice;
     private String menuCategory;
 
-    public MenuVO(int menuId, String menuName, int menuPrice, String menuCategory) {
-        this.menuId = menuId;
+    public CafeMenuVO(int menuID, String menuName, int menuPrice, String menuCategory) {
+        this.menuID = menuID;
         this.menuName = menuName;
         this.menuPrice = menuPrice;
         this.menuCategory = menuCategory;
     }
 
-    public int getMenuId() {
-        return menuId;
+    public int getMenuID() {
+        return menuID;
     }
 
-    public void setMenuId(int menuId) {
-        this.menuId = menuId;
+    public void setMenuID(int menuID) {
+        this.menuID = menuID;
     }
 
     public String getMenuName() {
