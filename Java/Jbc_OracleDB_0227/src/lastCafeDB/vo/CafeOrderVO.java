@@ -12,8 +12,9 @@ public class CafeOrderVO {
     private int totalPrice;
     private int orderCnt;
     private String orderPayment;
+    private int customerPoint;
 
-    public CafeOrderVO(int orderId, String orderDate, int customerId, String customerName, String orderName, int orderPrice, String optionName, int optionPrice, int totalPrice, int orderCnt, String orderPayment) {
+    public CafeOrderVO(int orderId, String orderDate, int customerId, String customerName, String orderName, int orderPrice, String optionName, int optionPrice, int totalPrice, int orderCnt, String orderPayment, int customerPoint) {
         this.orderId = orderId;
         this.orderDate = orderDate;
         this.customerId = customerId;
@@ -25,6 +26,20 @@ public class CafeOrderVO {
         this.totalPrice = totalPrice;
         this.orderCnt = orderCnt;
         this.orderPayment = orderPayment;
+        this.customerPoint = customerPoint;
+    }
+
+    public CafeOrderVO(String orderDate, int totalPrice) {
+        this.orderDate = orderDate;
+        this.totalPrice = totalPrice;
+    }
+
+    public int getCustomerPoint() {
+        return customerPoint;
+    }
+
+    public void setCustomerPoint(int customerPoint) {
+        this.customerPoint = customerPoint;
     }
 
     public int getOrderId() {

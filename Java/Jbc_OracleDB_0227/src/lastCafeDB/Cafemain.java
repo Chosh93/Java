@@ -12,6 +12,7 @@ import lastCafeDB.dao.CafeMenuDAO;
 import lastCafeDB.dao.CafeOrderDAO;
 import lastCafeDB.vo.CafeBasketVO;
 import lastCafeDB.vo.CafeMenuVO;
+import lastCafeDB.vo.CafeOrderVO;
 
 import java.util.List;
 import java.util.Scanner;
@@ -39,6 +40,7 @@ public class Cafemain {
                                 cafeMenudao.menuInsertDelete();
                                 continue;
                             case 3:
+                                cafeOrderdao.salesInfo();
                                 continue;
                             case 4:
                                 //orderdao.orderDelete();
