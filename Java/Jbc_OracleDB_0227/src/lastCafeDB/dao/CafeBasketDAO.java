@@ -45,6 +45,7 @@ public class CafeBasketDAO {
     }
 
     public void basketSelectPrint(List<CafeBasketVO> list) {
+        System.out.println("-----------------------------");
         for (CafeBasketVO e : list) {
             System.out.println("장바구니 번호 : " + e.getBasketId());
             System.out.println("메뉴이름 : " + e.getMenuName());
@@ -104,6 +105,19 @@ public class CafeBasketDAO {
             conn = CafeCommon.getConnection();
             stmt = conn.createStatement();
             String sql = "DELETE FROM CAFE_BASKET WHERE MENU_NAME = '" + menuDeleteName + "'";
+            rs = stmt.executeQuery(sql);
+            CafeCommon.close(rs);
+            CafeCommon.close(stmt);
+            CafeCommon.close(conn);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void basketDelete(){
+        try {
+            conn = CafeCommon.getConnection();
+            stmt = conn.createStatement();
+            String sql = "DELETE FROM CAFE_BASKET";
             rs = stmt.executeQuery(sql);
             CafeCommon.close(rs);
             CafeCommon.close(stmt);

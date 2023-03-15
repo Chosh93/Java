@@ -28,14 +28,21 @@ public class CafeOrderDAO {
                 System.out.print("[1]현금 [2]카드 : ");
                 int ordersel = sc.nextInt();
                 String payment = "";
+                System.out.print("[1]적립 [2]적립안함 : ");
+                int milsel = sc.nextInt();
+                String customerName = "";
                 if (ordersel == 1) payment = "현금";
-                else payment = "카드";
+                else if(ordersel == 2) payment = "카드";
+                if(milsel == 1) {
+                    System.out.print("고객 이름 : ");
+                    customerName = sc.next();
+                }
                 try {
                     conn = CafeCommon.getConnection();
                     stmt = conn.createStatement();
                     String sql = "INSERT INTO CAFE_ORDER SELECT ORDER_SEQ.NEXTVAL, SYSDATE, C.CUSTOMER_ID, C.CUSTOMER_NAME, B.MENU_NAME, B.MENU_PRICE," +
                             " B.OPTION_NAME, B.OPTION_PRICE, B.MENU_CNT, B.TOTAL_PRICE, '" + payment + "', C.CUSTOMER_MIL " +
-                            "FROM CAFE_BASKET B JOIN CAFE_CUSTOMER C ON 1=1";
+                            "FROM CAFE_BASKET B JOIN CAFE_CUSTOMER C ON 1=1 WHERE C.CUSTOMER_NAME = '" + customerName + "'";
                     rs = stmt.executeQuery(sql);
                     CafeCommon.close(rs);
                     CafeCommon.close(stmt);
@@ -48,6 +55,8 @@ public class CafeOrderDAO {
             case 2:
                 cafeBasketdao.basketmenuDelete();
                 System.out.println("해당 메뉴가 장비구니에서 삭제 되었습니다.");
+                break;
+            default:
                 break;
         }
     }
@@ -86,6 +95,7 @@ public class CafeOrderDAO {
     }
 
     public void cafeOrderListPrint(List<CafeOrderVO> list) {
+        System.out.println("-----------------------------");
         for (CafeOrderVO e : list) {
             System.out.println("주문 번호 : " + e.getOrderId());
             System.out.println("주문 날짜 : " + e.getOrderDate());
@@ -113,11 +123,16 @@ public class CafeOrderDAO {
                 break;
             case 2:
                 System.out.println("[일일 매출]");
+                System.out.println("---------------");
                 try {
                     conn = CafeCommon.getConnection();
                     stmt = conn.createStatement();
-                    String sql = "SELECT SUBSTR(ORDER_DATE, 1, 10) AS ORDER_DATE, SUM(TOTAL_PRICE) AS TOTAL_PRICE FROM CAFE_ORDER GROUP BY SUBSTR(ORDER_DATE, 1, 10)";
+                    String sql = "SELECT SUBSTR(ORDER_DATE, 1, 8) AS ORDER_DATE, SUM(TOTAL_PRICE) AS TOTAL_PRICE FROM CAFE_ORDER GROUP BY SUBSTR(ORDER_DATE, 1, 8)";
                     rs = stmt.executeQuery(sql);
+                    while(rs.next()){
+                        System.out.println("날짜 : " + rs.getString(1) + "\n일일 매출 : " + rs.getInt(2) +"원");
+                        System.out.println("---------------");
+                    }
                     CafeCommon.close(rs);
                     CafeCommon.close(stmt);
                     CafeCommon.close(conn);
@@ -127,12 +142,17 @@ public class CafeOrderDAO {
                 break;
             case 3:
                 System.out.println("[월 매출]");
+                System.out.println("-----------");
                 try {
                     conn = CafeCommon.getConnection();
                     stmt = conn.createStatement();
-                    String sql = "SELECT SUBSTR(ORDER_DATE, 1, 7) AS ORDER_DATE, SUM(TOTAL_PRICE) AS TOTAL_PRICE FROM CAFE_ORDER" +
-                            " GROUP BY SUBSTR(ORDER_DATE, 1, 7)";
+                    String sql = "SELECT SUBSTR(ORDER_DATE, 1, 5) AS ORDER_DATE, SUM(TOTAL_PRICE) AS TOTAL_PRICE FROM CAFE_ORDER" +
+                            " GROUP BY SUBSTR(ORDER_DATE, 1, 5)";
                     rs = stmt.executeQuery(sql);
+                    while(rs.next()){
+                        System.out.println("날짜 : " + rs.getString(1) + "\n월 매출 : " + rs.getInt(2) + "원");
+                        System.out.println("---------------");
+                    }
                     CafeCommon.close(rs);
                     CafeCommon.close(stmt);
                     CafeCommon.close(conn);
@@ -142,11 +162,16 @@ public class CafeOrderDAO {
                 break;
             case 4:
                 System.out.println("[판매량 인기 순위]");
+                System.out.println("-----------------");
                 try {
                     conn = CafeCommon.getConnection();
                     stmt = conn.createStatement();
                     String sql = "SELECT ORDER_NAME, SUM(ORDER_CNT) FROM CAFE_ORDER GROUP BY ORDER_NAME ORDER BY SUM(ORDER_CNT) DESC";
                     rs = stmt.executeQuery(sql);
+                    while(rs.next()){
+                        System.out.println("메뉴 이름 : " + rs.getString(1) + "\n판매량 : " + rs.getInt(2));
+                        System.out.println("---------------");
+                    }
                     CafeCommon.close(rs);
                     CafeCommon.close(stmt);
                     CafeCommon.close(conn);

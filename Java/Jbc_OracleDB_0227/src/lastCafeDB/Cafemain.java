@@ -6,11 +6,9 @@ import com.cafeDB.dao.MenuDAO;
 import com.cafeDB.dao.OrderDAO;
 import com.cafeDB.vo.BasketVO;
 import com.cafeDB.vo.MenuVO;
-import lastCafeDB.dao.CafeBasketDAO;
-import lastCafeDB.dao.CafeLoginDAO;
-import lastCafeDB.dao.CafeMenuDAO;
-import lastCafeDB.dao.CafeOrderDAO;
+import lastCafeDB.dao.*;
 import lastCafeDB.vo.CafeBasketVO;
+import lastCafeDB.vo.CafeCustomerVO;
 import lastCafeDB.vo.CafeMenuVO;
 import lastCafeDB.vo.CafeOrderVO;
 
@@ -24,12 +22,13 @@ public class Cafemain {
         CafeOrderDAO cafeOrderdao = new CafeOrderDAO();
         CafeBasketDAO cafeBasketdao = new CafeBasketDAO();
         CafeLoginDAO cafeLogindao = new CafeLoginDAO();
+        CafeCustomerDAO cafeCustomerdao = new CafeCustomerDAO();
         while (true) {
             switch (cafeLogindao.login()) {
                 case 1:
                     while (true) {
                         System.out.println("메뉴를 선택 하세요 : ");
-                        System.out.print("[1]메뉴 보기, [2]메뉴 추가/삭제, [3]매출 정보, [4]EXIT : ");
+                        System.out.print("[1]메뉴 보기, [2]메뉴 추가/삭제, [3]매출 정보, [4]고객 정보, [5]EXIT: ");
                         int adminsel = sc.nextInt();
                         switch (adminsel) {
                             case 1:
@@ -43,6 +42,10 @@ public class Cafemain {
                                 cafeOrderdao.salesInfo();
                                 continue;
                             case 4:
+                                List<CafeCustomerVO> cafeCustomerVO = cafeCustomerdao.customerSelect();
+                                cafeCustomerdao.customerSelectPrint(cafeCustomerVO);
+                                continue;
+                            case 5:
                                 //orderdao.orderDelete();
                                 break;
                         }
@@ -84,6 +87,7 @@ public class Cafemain {
                                 continue;
                             case 3:
                                 cafeOrderdao.order();
+                                cafeBasketdao.basketDelete();
                                 continue;
                             case 4:
                                 System.out.println("종료");
