@@ -9,12 +9,12 @@ public class CafeOrderVO {
     private int orderPrice;
     private String optionName;
     private int optionPrice;
-    private int totalPrice;
     private int orderCnt;
+    private int totalPrice;
     private String orderPayment;
     private int customerPoint;
 
-    public CafeOrderVO(int orderId, String orderDate, int customerId, String customerName, String orderName, int orderPrice, String optionName, int optionPrice, int totalPrice, int orderCnt, String orderPayment, int customerPoint) {
+    public CafeOrderVO(int orderId, String orderDate, int customerId, String customerName, String orderName, int orderPrice, String optionName, int optionPrice, int orderCnt, int totalPrice, String orderPayment, int customerPoint) {
         this.orderId = orderId;
         this.orderDate = orderDate;
         this.customerId = customerId;
@@ -23,8 +23,8 @@ public class CafeOrderVO {
         this.orderPrice = orderPrice;
         this.optionName = optionName;
         this.optionPrice = optionPrice;
-        this.totalPrice = totalPrice;
         this.orderCnt = orderCnt;
+        this.totalPrice = totalPrice;
         this.orderPayment = orderPayment;
         this.customerPoint = customerPoint;
     }

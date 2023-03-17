@@ -117,8 +117,12 @@ public class CafeBasketDAO {
         try {
             conn = CafeCommon.getConnection();
             stmt = conn.createStatement();
-            String sql = "DELETE FROM CAFE_BASKET";
-            rs = stmt.executeQuery(sql);
+            String sql1 = "DELETE FROM CAFE_BASKET";
+            String sql2 = "DROP SEQUENCE BASKET_SEQ";
+            String sql3 = "CREATE SEQUENCE BASKET_SEQ";
+            rs = stmt.executeQuery(sql1);
+            rs = stmt.executeQuery(sql2);
+            rs = stmt.executeQuery(sql3);
             CafeCommon.close(rs);
             CafeCommon.close(stmt);
             CafeCommon.close(conn);

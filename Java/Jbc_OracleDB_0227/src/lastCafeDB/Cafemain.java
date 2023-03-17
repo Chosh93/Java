@@ -42,8 +42,7 @@ public class Cafemain {
                                 cafeOrderdao.salesInfo();
                                 continue;
                             case 4:
-                                List<CafeCustomerVO> cafeCustomerVO = cafeCustomerdao.customerSelect();
-                                cafeCustomerdao.customerSelectPrint(cafeCustomerVO);
+                                cafeCustomerdao.customerInfo();
                                 continue;
                             case 5:
                                 //orderdao.orderDelete();
