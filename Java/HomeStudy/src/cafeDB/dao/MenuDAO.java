@@ -89,4 +89,33 @@ public class MenuDAO {
                 break;
         }
     }
+    public void menuInsert(String menuInsName, int menuPrice, String menuCategory){
+        try {
+            conn = Common.getConnection();
+            stmt = conn.createStatement();
+            String sql = "INSERT INTO CAFE_MENU(MENU_ID, MENU_NAME, MENU_PRICE, MENU_CATEGORY) VALUES((SELECT NVL(MAX(MENU_ID),0)+1 FROM CAFE_MENU), '" + menuInsName + "', " + menuPrice + ", '" + menuCategory + "')";
+            rs = stmt.executeQuery(sql);
+            Common.close(rs);
+            Common.close(stmt);
+            Common.close(conn);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("메뉴 " + menuInsName + " 추가 완료 되었습니다.");
+    }
+
+    public void menuDelete(String menuDelName){
+        try {
+            conn = Common.getConnection();
+            stmt = conn.createStatement();
+            String sql = "DELETE FROM CAFE_MENU WHERE MENU_NAME = '" + menuDelName + "'";
+            rs = stmt.executeQuery(sql);
+            Common.close(rs);
+            Common.close(stmt);
+            Common.close(conn);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("메뉴 " + menuDelName + " 삭제 완료 되었습니다.");
+    }
 }

@@ -57,15 +57,42 @@ public class BasketDAO {
         }
     }
     public void basketmenuDelete(){
-        System.out.println("[장바구니에서 수정 할 메뉴]");
-        System.out.print("메뉴 이름 : ");
-        String menuDeleteName = sc.next();
-        sc.nextLine();
+        System.out.println("장바구니를 수정 하시겠습니까?");
+        System.out.println("[1]Yes [2]No");
+        System.out.print(">>> : ");
+        int sel = sc.nextInt();
+        switch(sel){
+            case 1:
+                System.out.println("[장바구니에서 수정 할 메뉴]");
+                System.out.print("메뉴 이름 : ");
+                String menuDeleteName = sc.next();
+                sc.nextLine();
+                try {
+                    conn = Common.getConnection();
+                    stmt = conn.createStatement();
+                    String sql = "DELETE FROM CAFE_BASKET WHERE MENU_NAME = '" + menuDeleteName + "'";
+                    rs = stmt.executeQuery(sql);
+                    Common.close(rs);
+                    Common.close(stmt);
+                    Common.close(conn);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
+            case 2:
+                break;
+        }
+    }
+    public void basketDelete(){
         try {
             conn = Common.getConnection();
             stmt = conn.createStatement();
-            String sql = "DELETE FROM CAFE_BASKET WHERE MENU_NAME = '" + menuDeleteName + "'";
-            rs = stmt.executeQuery(sql);
+            String sql1 = "DELETE FROM CAFE_BASKET";
+            String sql2 = "DROP SEQUENCE BASKET_SEQ";
+            String sql3 = "CREATE SEQUENCE BASKET_SEQ";
+            rs = stmt.executeQuery(sql1);
+            rs = stmt.executeQuery(sql2);
+            rs = stmt.executeQuery(sql3);
             Common.close(rs);
             Common.close(stmt);
             Common.close(conn);

@@ -1,10 +1,6 @@
 package cafeDB;
 
-import cafeDB.dao.MenuDAO;
-import cafeDB.vo.MenuVO;
 
-import java.awt.*;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -21,9 +17,10 @@ public class Main {
                     method.customerMode();
                     break;
                 case 2:
+                    method.adminMode();
                     break;
                 case 3:
-                    System.out.printf("키오스크를 종료합니다.");
+                    System.out.print("키오스크를 종료합니다.");
                     System.exit(0);
                     break;
             }
