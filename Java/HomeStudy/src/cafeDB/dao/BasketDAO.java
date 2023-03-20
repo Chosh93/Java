@@ -56,17 +56,7 @@ public class BasketDAO {
             System.out.println("-----------------------------");
         }
     }
-    public void basketmenuDelete(){
-        System.out.println("장바구니를 수정 하시겠습니까?");
-        System.out.println("[1]Yes [2]No");
-        System.out.print(">>> : ");
-        int sel = sc.nextInt();
-        switch(sel){
-            case 1:
-                System.out.println("[장바구니에서 수정 할 메뉴]");
-                System.out.print("메뉴 이름 : ");
-                String menuDeleteName = sc.next();
-                sc.nextLine();
+    public void basketmenuDelete(String menuDeleteName){
                 try {
                     conn = Common.getConnection();
                     stmt = conn.createStatement();
@@ -78,11 +68,8 @@ public class BasketDAO {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                break;
-            case 2:
-                break;
         }
-    }
+
     public void basketDelete(){
         try {
             conn = Common.getConnection();
