@@ -58,7 +58,7 @@ public class CustomerDAO {
         try{
             conn = Common.getConnection();
             stmt = conn.createStatement();
-            String sql = "SELECT * FROM CUSTOMER WHERE CUSTOMER_NAME = '" + val + "'";
+            String sql = "SELECT * FROM CAFE_CUSTOMER WHERE CUSTOMER_NAME = '" + val + "'";
             rs = stmt.executeQuery(sql);
             while(rs.next()){
                 int customerId = rs.getInt("CUSTOMER_ID");
@@ -131,8 +131,6 @@ public class CustomerDAO {
         } catch (Exception e){
             e.printStackTrace();
         }
-        System.out.println("["+customerName+"님의 주문내역 조회]");
-        System.out.println("--------------------------------------");
         try{
             conn = Common.getConnection();
             stmt = conn.createStatement();
@@ -146,6 +144,19 @@ public class CustomerDAO {
             Common.close(stmt);
             Common.close(conn);
         } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    public void csPointSave(String customerName, int t_point) {
+        try {
+            conn = Common.getConnection();
+            stmt = conn.createStatement();
+            String sql = "UPDATE CAFE_CUSTOMER SET CUSTOMER_MIL = " + t_point + " WHERE CUSTOMER_NAME = '" + customerName + "'";
+            rs = stmt.executeQuery(sql);
+            Common.close(rs);
+            Common.close(stmt);
+            Common.close(conn);
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

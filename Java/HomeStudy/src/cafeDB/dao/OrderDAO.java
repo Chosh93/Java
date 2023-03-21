@@ -2,6 +2,7 @@ package cafeDB.dao;
 
 import cafeDB.Method;
 import cafeDB.util.Common;
+import cafeDB.vo.CustomerVO;
 import cafeDB.vo.OrderVO;
 
 import java.sql.Connection;
@@ -68,60 +69,79 @@ public class OrderDAO {
             System.out.println("-----------------------------");
         }
     }
-    public void order() {
-        System.out.print("[1]주문하기 [2]메뉴 수정 [3]취소");
-        int sel = sc.nextInt();
-        switch (sel) {
-            case 1:
-                System.out.println("[주문 방법]");
-                System.out.print("[1]현금 [2]카드 : ");
-                int ordersel = sc.nextInt();
-                String payment = "";
-                if (ordersel == 1) payment = "현금";
-                else if (ordersel == 2) payment = "카드";
-                System.out.print("[1]적립 [2]적립안함 : ");
-                int milsel = sc.nextInt();
-                String customerName = "";
-                if (milsel == 1) {
-                    System.out.print("고객 이름 : ");
-                    customerName = sc.next();
-                    try {
-                        conn = Common.getConnection();
-                        stmt = conn.createStatement();
-                        String sql = "INSERT INTO CAFE_ORDER SELECT ORDER_SEQ.NEXTVAL, SYSDATE, C.CUSTOMER_ID, C.CUSTOMER_NAME, B.MENU_NAME, B.MENU_PRICE," +
-                                " B.OPTION_NAME, B.OPTION_PRICE, B.MENU_CNT, B.TOTAL_PRICE, '" + payment + "', B.TOTAL_PRICE/100 " +
-                                "FROM CAFE_BASKET B JOIN CAFE_CUSTOMER C ON 1=1 WHERE C.CUSTOMER_NAME = '" + customerName + "'";
-                        rs = stmt.executeQuery(sql);
-                        mileagePoint(customerName);
-                        Common.close(rs);
-                        Common.close(stmt);
-                        Common.close(conn);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                } else {
-                    try {
-                        conn = Common.getConnection();
-                        stmt = conn.createStatement();
-                        String sql = "INSERT INTO CAFE_ORDER SELECT ORDER_SEQ.NEXTVAL, SYSDATE, C.CUSTOMER_ID, C.CUSTOMER_NAME, B.MENU_NAME, B.MENU_PRICE," +
-                                " B.OPTION_NAME, B.OPTION_PRICE, B.MENU_CNT, B.TOTAL_PRICE, '" + payment + "', C.CUSTOMER_MIL " +
-                                "FROM CAFE_BASKET B JOIN CAFE_CUSTOMER C ON 1=1 WHERE C.CUSTOMER_NAME = '비회원'";
-                        rs = stmt.executeQuery(sql);
-                        Common.close(rs);
-                        Common.close(stmt);
-                        Common.close(conn);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-                System.out.println("[주문하기 완료 되었습니다.]");
-                break;
-            case 2:
-                basketdao.basketmenuDelete();
-                System.out.println("해당 메뉴가 장비구니에서 삭제 되었습니다.");
-                break;
-            default:
-                break;
+    public OrderVO csTpriceSelect(String csName) {
+        OrderVO vo = null;
+        try {
+            conn = Common.getConnection();
+            stmt = conn.createStatement();
+            String sql = "SELECT * FROM CAFE_ORDER WHERE CUSTOMER_NAME = '" + csName + "'";
+            rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                int orderId = rs.getInt("ORDER_ID");
+                String orderDate = rs.getString("ORDER_DATE");
+                int customerId = rs.getInt("CUSTOMER_ID");
+                String customerName = rs.getString("CUSTOMER_NAME");
+                String orderName = rs.getString("ORDER_NAME");
+                int orderPrice = rs.getInt("ORDER_PRICE");
+                String optionName = rs.getString("OPTION_NAME");
+                int optionPrice = rs.getInt("OPTION_PRICE");
+                int orderCnt = rs.getInt("ORDER_CNT");
+                int totalPrice = rs.getInt("TOTAL_PRICE");
+                String orderPayment = rs.getString("ORDER_PAYMENT");
+                int customerPoint = rs.getInt("CUSTOMER_POINT");
+
+                vo = new OrderVO(orderId, orderDate, customerId, customerName, orderName, orderPrice, optionName, optionPrice, orderCnt, totalPrice, orderPayment, customerPoint);
+            }
+            Common.close(rs);
+            Common.close(stmt);
+            Common.close(conn);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return vo;
+    }
+    public void csTpriceSelectPrint(OrderVO vo) {
+        if (vo == null) {
+            System.out.println("해당하는 고객 정보가 없습니다.");
+            return;
+        }
+        System.out.println("------------------------------------------------------------------------");
+        System.out.println("총 액 : " + vo.getTotalPrice());
+        System.out.println("------------------------------------------------------------------------");
+
+
+    }
+
+    public void orderCustomer(String payment, String customerName) {
+        try {
+            conn = Common.getConnection();
+            stmt = conn.createStatement();
+            String sql = "INSERT INTO CAFE_ORDER SELECT ORDER_SEQ.NEXTVAL, SYSDATE, C.CUSTOMER_ID, C.CUSTOMER_NAME, B.MENU_NAME, B.MENU_PRICE," +
+                    " B.OPTION_NAME, B.OPTION_PRICE, B.MENU_CNT, B.TOTAL_PRICE, '" + payment + "', B.TOTAL_PRICE/100 " +
+                    "FROM CAFE_BASKET B JOIN CAFE_CUSTOMER C ON 1=1 WHERE C.CUSTOMER_NAME = '" + customerName + "'";
+            rs = stmt.executeQuery(sql);
+            mileagePoint(customerName);
+            Common.close(rs);
+            Common.close(stmt);
+            Common.close(conn);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void orderNonCustomer(String payment) {
+        try {
+            conn = Common.getConnection();
+            stmt = conn.createStatement();
+            String sql = "INSERT INTO CAFE_ORDER SELECT ORDER_SEQ.NEXTVAL, SYSDATE, C.CUSTOMER_ID, C.CUSTOMER_NAME, B.MENU_NAME, B.MENU_PRICE," +
+                    " B.OPTION_NAME, B.OPTION_PRICE, B.MENU_CNT, B.TOTAL_PRICE, '" + payment + "', C.CUSTOMER_MIL " +
+                    "FROM CAFE_BASKET B JOIN CAFE_CUSTOMER C ON 1=1 WHERE C.CUSTOMER_NAME = '비회원'";
+            rs = stmt.executeQuery(sql);
+            Common.close(rs);
+            Common.close(stmt);
+            Common.close(conn);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
     public void dailySales(){
