@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jquery-3.6.4.min.js"></script>
+</head>
+<body>
+    <div>
+        <p class="content" id="content1">문단1</p>
+        <p class="content" id="content2">문단2</p>
+        <p class="content" id="content3">문단3</p>
+    </div>
+    
+    <button onclick="changeContent1();">내용변경</button>
+    <button onclick="changeContent2();">색상변경</button>
+    <button id="jquerybtn">이벤트처리</button>
+    <script>
+        function changeContent1(){
+            var change = document.getElementById("content1");
+            change.innerText = "문단1이 변경되었습니다.";
+        }
+        function changeContent2(){
+            var color = document.getElementById("content2");
+            color.style.color = "#ff0000"
+        }
+        $(document).click(function(){
+            var sel = $("#content3").text();
+            console.log(sel);
+        })
+    </script>
+    
+</body>
+</html>
