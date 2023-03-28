@@ -1,21 +1,19 @@
-// 중복 없는 로또 번호 만들기 자바스크립트로 구현하고 html 과 CSS를 이용해 출력
+function lotto(){
+    const numbers = [];
+    const container = document.getElementById("container");
+    container.innerHTML ="";
 
-function lottoStart(){
-    let lotto = [];
-    let i=0;
-    while(i < 6){
-        let n = Math.floor(Math.random() * 45 + 1);
-        if(! sameNum(n)){
-            lotto.push(n);
-            i++;
+    while(numbers.length < 6){
+        const number = Math.floor(Math.random() * 45) + 1;
+        if(!numbers.includes(number)){
+            numbers.push(number);
         }
     }
-    function sameNum(n){
-        for(let i = 0; i < lotto.length; i++){
-            if(n === lotto[i]) return true;
-        }
-        return false;   
+    for(let num of numbers){
+        const div = document.createElement('div');
+        div.classList.add('number');
+        div.textContent = num;
+        container.appendChild(div);
     }
-    console.log(lotto);
-    document.write(lotto);
-}
+    console.log(numbers);
+};
