@@ -6,8 +6,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>로또</title>
     <script src="./로또실습.js"></script>
+    <style>
+        .btn {
+            display: block;
+            margin: 0 auto;
+            background-color: #4caf50;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .btn:active {
+            background-color: #3d8e41;
+        }
+        body {
+            background-color: #f5f5f5;
+            font-family: sans-serif;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+            color: #3d3d3d;
+        }
+        #container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .number {
+            width: 50px;
+            height: 50px;
+            margin: 10px;
+            border-radius: 50%;
+            background-color: #3d3d3d;
+            counter-reset: #fff;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: wheat;
+        }
+    </style>
 </head>
 <body>
-    <button onclick="lottoStart()">로또 번호 생성</button>
+    <h1>로또 번호 생성기</h1>
+    <button onclick="lotto()" class="btn">번호 생성</button>
+    <div id="container"></div>
 </body>
 </html>
