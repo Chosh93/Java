@@ -4,9 +4,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>평균점수 구하기</title>
+    <script src="./평균점수.js"></script>
 </head>
 <body>
-    
+    <h1>5명의 성적 평균 구하기</h1>
+    <label for="input1">1 성적 = </label>
+    <input type="number" id="input1">
+    <br>
+    <label for="input2">2 성적 = </label>
+    <input type="number" id="input2">
+    <br>
+    <label for="input3">3 성적 = </label>
+    <input type="number" id="input3">
+    <br>
+    <label for="input4">4 성적 = </label>
+    <input type="number" id="input4">
+    <br>
+    <label for="input5">5 성적 = </label>
+    <input type="number" id="input5">
+    <br>
+    <button onclick="averScore()" class="btn">성적계산</button>
+    <p id="result"></p>
 </body>
 </html>

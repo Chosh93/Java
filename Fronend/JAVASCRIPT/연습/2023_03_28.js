@@ -102,3 +102,37 @@ console.log(fruits.toString());
 
 // join() : 배열안의 모든 문자를 파라미터로 지정한 문자를 이용해서 모두 결합
 console.log(fruits.join("/"));
+
+// shift() : 첫번째 오소를 제거하고 값을 반환
+console.log(fruits.shift());
+console.log(fruits);
+
+// unshift() : 배열의 맨앞에 요소를 추가하고 배열의 길이를 반환
+console.log(fruits.unshift("Lemon"));
+console.log(fruits);
+
+let persons = [
+    {
+        name : "유재석",
+        point : 78,
+        city : "서울"
+    },
+    {
+        name : "김종국",
+        point : 92,
+        city : "서울"
+    },
+    {
+        name : "양세찬",
+        point : 76,
+        city : "제주"
+    },
+    {
+        name : "하하",
+        point : 81,
+        city : "인천"
+    }
+];
+
+let pass = persons.filter(e => e.point > 80);
+console.log(pass);
