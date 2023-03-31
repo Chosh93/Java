@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./실습.css">
+</head>
+
+<body>
+    <ul>
+		<li class="green"><a href="#" onclick="alert('버튼을 클릭했습니다.')">Green</a></li>
+		<li class="orange"><a href="#" onclick="alert('버튼을 클릭했습니다.')">Orange</a></li>
+		<li class="purple"><a href="#" onclick="alert('버튼을 클릭했습니다.')">Purple</a></li>
+	</ul>
+    <ul>
+		<li class="green"><a href="#" onclick="changeBg('green')">Green</a></li>
+		<li class="orange"><a href="#" onclick="changeBg('orange')">Orange</a></li>
+		<li class="purple"><a href="#" onclick="changeBg('purple')">Purple</a></li>
+	</ul>		
+  <div id="result"></div>
+    <div id="item">
+        <img src="./실습.jpeg" width="400px" alt="이미지">
+        <button class="over" id="open" onclick="showDetail()">상세 설명 보기</button>
+        <div id="desc" class="detail">
+            <h4>그룹 잇지</h4>
+            <p>팀명 'ITZY'는 '너희가 원하는 거 전부 있지? 있지!' 
+                라는 뜻을 가지고 있으며, 정식 한글 표기법은 있지이다. 
+                혹 영어명인 'ITZY'로만 들어본 사람들이 한글로는 어떻게 
+                적는지 몰라 '잇지'라고 부르는 경우도 꽤 많이 있는데, '있지'라고 
+                불러야 한다며 정정해주는 것이 팬덤 잇지에게는 일상이 되었다.</p>
+            <button id="close" onclick="hideDetail()">상세 설명 닫기</button>
+        </div>
+    </div>
+    <script src="./실습.js"></script>
+</body>
+
+</html>

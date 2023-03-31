@@ -1,0 +1,64 @@
+a:link, a:visited {
+    color:white;
+    text-decoration: none;
+}
+ul {
+  list-style: none;
+  width:500px;
+  margin:10px auto;
+  padding:0;
+}
+li {
+  display:inline-block;
+  width:120px;
+  border:1px solid #ccc;
+  padding:10px 15px;	
+  font-size:16px;
+  text-align:center;
+}
+.green {
+  background-color: green;
+  color: white;
+  font-weight: bold;
+}
+.orange {
+  background-color: orange;
+  color: white;
+  font-weight: bold;
+}
+.purple {
+  background-color: purple;
+  color: white;
+  font-weight: bold;
+}
+#result {
+  width:500px;
+  height:300px;
+  margin:30px auto;
+  border:2px solid #ccc;
+  border-radius:15px;
+}
+#item {
+    position:relative;
+    width:500px;
+    height:auto;
+    padding:15px 20px;
+    margin:auto;
+}
+button {
+    background-color:rgba(255,255,255,0.7);;
+    padding:5px;
+    border:1px solid #ccc;
+    font-size:0.8em;			
+}
+.over {
+    position:absolute;
+    left:30px;
+    bottom:30px;
+}
+.detail {
+    width:400px;
+    text-align:left;			
+    line-height:1.8;
+    display:none;
+}

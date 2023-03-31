@@ -1,0 +1,22 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+button {
+    font-size: 18px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #333;
+    cursor: pointer;
+    color: #fff;
+    border-radius: 10px;
+}
+button:active{
+    background-color: black;
+}
+body {
+    background-color: #eee;
+}
