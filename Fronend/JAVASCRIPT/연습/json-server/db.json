@@ -1,0 +1,139 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "title": "리액트",
+      "author": "패이스북",
+      "id": 2
+    },
+    {
+      "title": "리액트",
+      "author": "패이스북",
+      "id": 3
+    },
+    {
+      "title": "리액트",
+      "author": "패이스북",
+      "id": 4
+    },
+    {
+      "title": "리액트",
+      "author": "패이스북",
+      "id": 5
+    },
+    {
+      "title": "리액트",
+      "author": "패이스북",
+      "id": 6
+    },
+    {
+      "title": "리액트",
+      "author": "패이스북",
+      "id": 7
+    },
+    {
+      "title": "리액트",
+      "author": "패이스북",
+      "id": 8
+    },
+    {
+      "title": "리액트",
+      "author": "패이스북",
+      "id": 9
+    },
+    {
+      "title": "리액트",
+      "author": "패이스북",
+      "id": 10
+    },
+    {
+      "title": "리액트",
+      "author": "패이스북",
+      "id": 11
+    },
+    {
+      "title": "리액트",
+      "author": "패이스북",
+      "id": 12
+    },
+    {
+      "title": "리액트",
+      "author": "패이스북",
+      "id": 13
+    },
+    {
+      "title": "리액트",
+      "author": "패이스북",
+      "id": 14
+    },
+    {
+      "title": "리액트",
+      "author": "패이스북",
+      "id": 15
+    },
+    {
+      "title": "리액트",
+      "author": "패이스북",
+      "id": 16
+    },
+    {
+      "title": "리액트",
+      "author": "패이스북",
+      "id": 17
+    },
+    {
+      "title": "리액트",
+      "author": "패이스북",
+      "id": 18
+    },
+    {
+      "title": "리액트",
+      "author": "패이스북",
+      "id": 19
+    },
+    {
+      "title": "리액트",
+      "author": "패이스북",
+      "id": 20
+    },
+    {
+      "title": "리액트",
+      "author": "패이스북",
+      "id": 21
+    },
+    {
+      "title": "리액트",
+      "author": "패이스북",
+      "id": 22
+    },
+    {
+      "title": "리액트",
+      "author": "패이스북",
+      "id": 23
+    },
+    {
+      "title": "리액트",
+      "author": "패이스북",
+      "id": 24
+    },
+    {
+      "title": "리액트",
+      "author": "패이스북",
+      "id": 25
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
