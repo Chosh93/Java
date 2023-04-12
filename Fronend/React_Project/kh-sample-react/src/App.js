@@ -4,7 +4,12 @@ import MyComponent from './MyComponent';
 import Person from './Person';
 import Say from './Say';
 import Clock from './Clock';
-
+import EvenHandler from './EventHandler';
+import EventHandler2 from './EventHandler2';
+import FruitSelect from './SelectBox';
+import RadioButton from './RadioButton';
+import TableMap from './TableMap';
+import CreateRef from './Ref';
 
 // 컴포넌트는 항상 대문자로 시작하고, 반환값으로 UI요소를 반환
 // function WelcomeProps(props){
@@ -31,6 +36,12 @@ const App = () => {
     <Person {...personData}/>
     <Say/>
     <Clock/>
+    <EvenHandler/>
+    <EventHandler2/>
+    <FruitSelect/>
+    <RadioButton/>
+    <TableMap/>
+    <CreateRef/>
     </>
   );
 }
