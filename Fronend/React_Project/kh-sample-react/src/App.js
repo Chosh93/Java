@@ -10,6 +10,7 @@ import FruitSelect from './SelectBox';
 import RadioButton from './RadioButton';
 import TableMap from './TableMap';
 import CreateRef from './Ref';
+import UserState from './명함만들기';
 
 // 컴포넌트는 항상 대문자로 시작하고, 반환값으로 UI요소를 반환
 // function WelcomeProps(props){
@@ -42,6 +43,7 @@ const App = () => {
     <RadioButton/>
     <TableMap/>
     <CreateRef/>
+    <UserState/>
     </>
   );
 }
