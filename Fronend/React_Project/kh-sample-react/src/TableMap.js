@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./App.css";
 // 배열로 구성된 객체를 전달 받아 map으로 화면에 표시하고
 // 표시된 화면 영역에 이벤트 연결하기
@@ -10,9 +10,9 @@ const TableMap = () => {
     ];
     const [mapData, setMapData] = useState("");
 
-    useEffect(() => {
-        setMapData(data);
-    }, []);
+    // useEffect(() => {
+    //     setMapData(data);
+    // }, []);
 
     const handleTalbeRowClick = (item) => {
         console.log(item);

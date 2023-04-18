@@ -1,0 +1,21 @@
+/* CSS Module은 CSS를 불러와서 사용 할 때 클래스 이름을 고유한 값, 즉 
+[파일 이름]{[클래스 이름]_[해시값] 형태로 자동으로 만들어서 컴포넌트
+    스타일 클래스 이름이 중첩이 되는 현상을 방지해 주는 기술 */
+
+.wrapper {
+    background: black;
+    padding: 1rem;
+    color: white;
+    font-size: 2rem;
+}
+
+.inverted {
+    color: black;
+    background: white;
+    border: 1px solid black;
+}
+/* 글로벌 CSS로 지정? */
+:global .something {
+    font-weight: 800;
+    color: aqua;
+}
